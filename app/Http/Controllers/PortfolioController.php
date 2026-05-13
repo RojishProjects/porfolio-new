@@ -15,7 +15,10 @@ class PortfolioController extends Controller
     public function index()
     {
         $settings = Setting::all()->pluck('value', 'key');
-        $skills = Skill::orderBy('category')->get()->groupBy('category');
+        $skills = Skill::all()->groupBy('category')->sortBy(function ($items, $key) {
+            $order = ['Web Development' => 1, 'Marketing' => 2, 'Youth Leadership' => 3];
+            return $order[$key] ?? 99;
+        });
         $about_roles = AboutRole::all();
         
         $totalProjects = Project::where('is_hidden', false)->count();

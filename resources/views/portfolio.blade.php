@@ -337,8 +337,8 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 @foreach($skills as $category => $categorySkills)
-                <div class="bg-slate-900/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-900/70 transition-all duration-300  " data-animate data-delay="{{ $loop->iteration * 200 }}">
-                    <h3 class="text-2xl font-bold text-white mb-6 text-center">{{ $category }}</h3>
+                <div class="bg-slate-900/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-900/70 transition-all duration-300 border border-transparent hover:border-purple-500/30 group" data-animate data-delay="{{ $loop->iteration * 200 }}">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center group-hover:text-purple-400 transition-colors">{{ $category }}</h3>
                     <div class="space-y-6">
                         @foreach($categorySkills as $skill)
                         <div class="space-y-2">
@@ -612,7 +612,7 @@
 
             // Typing Animation
             const typingText = document.getElementById('typing-text');
-            const roles = ['Developer', 'Youth Leader', 'Marketer', 'Professional Designer'];
+            const roles = ['Youth Leader', 'Full Stack Developer', 'Generative AI Specialist', 'Creative Designer'];
             let roleIndex = 0;
             let charIndex = 0;
             let isDeleting = false;

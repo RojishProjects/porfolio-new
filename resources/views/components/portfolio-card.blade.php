@@ -9,7 +9,7 @@
     
     <div class="relative h-64 overflow-hidden">
         @if($item->image)
-            <img src="{{ $item->image }}" 
+            <img src="{{ asset($item->image) }}" 
                  alt="{{ $item->title }}" 
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         @else
