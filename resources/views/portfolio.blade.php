@@ -7,42 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    keyframes: {
-                        'fade-in': {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        'slide-in-right': {
-                            '0%': { opacity: '0', transform: 'translateX(100px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' }
-                        },
-                        'scale-in': {
-                            '0%': { opacity: '0', transform: 'scale(0.8)' },
-                            '100%': { opacity: '1', transform: 'scale(1)' }
-                        },
-                        'float-fade': {
-                            '0%, 100%': { opacity: '0', transform: 'scale(1) translate(0, 0)' },
-                            '50%': { opacity: '0.7', transform: 'scale(1.1) translate(20px, -20px)' }
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fade-in 0.6s ease-out forwards',
-                        'slide-in-right': 'slide-in-right 0.8s ease-out forwards',
-                        'scale-in': 'scale-in 0.6s ease-out forwards',
-                        'float-fade': 'float-fade 8s ease-in-out infinite'
-                    }
-                }
-            }
-        }
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .animate-delay-200 { animation-delay: 0.2s; }
         .animate-delay-400 { animation-delay: 0.4s; }
