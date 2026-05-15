@@ -1,7 +1,8 @@
-<?php
-
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+use App\Models\Project;
+use App\Models\GraphicDesign;
 
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
@@ -19,6 +20,14 @@ Route::get('/projects', [PortfolioController::class, 'projects'])->name('project
 Route::get('/projects/{project}', [PortfolioController::class, 'showProject'])->name('project.show');
 Route::get('/designs', [PortfolioController::class, 'designs'])->name('designs.index');
 Route::get('/designs/{design}', [PortfolioController::class, 'showDesign'])->name('design.show');
+
+Route::get('/sitemap.xml', function () {
+    $projects = Project::where('is_hidden', false)->get();
+    $designs = GraphicDesign::where('is_hidden', false)->get();
+
+    $content = view('sitemap', compact('projects', 'designs'));
+    return Response::make($content, 200, ['Content-Type' => 'application/xml']);
+});
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
