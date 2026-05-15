@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rojish Bhurtel - Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Full Stack Developer & AI Specialist</title>
+    <meta name="description" content="{{ $settings['about_summary'] ?? 'Portfolio of Rojish Bhurtel, a Full Stack Developer, Youth Leader, and Generative AI Specialist based in Nepal.' }}">
+    <meta name="keywords" content="Rojish Bhurtel, Rojish, Developer Nepal, Laravel Developer, AI Specialist Nepal, Full Stack Developer, Portfolio">
+    <meta name="author" content="Rojish Bhurtel">
+    <link rel="canonical" href="https://rojishbhurtel.com.np">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rojishbhurtel.com.np">
+    <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio">
+    <meta property="og:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
+    <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rojishbhurtel.com.np">
+    <meta property="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio">
+    <meta property="twitter:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
+    <meta property="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
