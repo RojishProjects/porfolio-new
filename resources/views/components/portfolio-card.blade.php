@@ -11,6 +11,7 @@
         @if($item->image)
             <img src="{{ asset($item->image) }}" 
                  alt="{{ $item->title }}" 
+                 loading="lazy"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         @else
             <div class="w-full h-full bg-slate-700 flex items-center justify-center">

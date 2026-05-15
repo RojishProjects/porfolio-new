@@ -57,6 +57,7 @@
                     <img
                         src="{{ $design->image }}"
                         alt="{{ $design->title }}"
+                        loading="lazy"
                         class="w-full h-auto block select-none group-hover:scale-[1.01] transition-transform duration-700"
                         oncontextmenu="return false;"
                         draggable="false"
