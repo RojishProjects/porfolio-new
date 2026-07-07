@@ -61,7 +61,7 @@
             @if($project->image)
                 <div class="relative z-10 max-w-4xl w-full mx-auto shadow-2xl rounded-2xl overflow-hidden group image-container">
                     <img
-                        src="{{ $project->image }}"
+                        src="{{ asset($project->image) }}"
                         alt="{{ $project->title }}"
                         loading="lazy"
                         class="w-full h-auto block group-hover:scale-[1.01] transition-transform duration-700"

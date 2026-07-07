@@ -80,7 +80,7 @@
                         
                         <div class="flex items-center gap-8 mb-8">
                             <div class="w-32 h-32 rounded-3xl overflow-hidden border border-slate-100 shadow-sm flex-shrink-0">
-                                <img src="{{ $project->image }}" class="w-full h-full object-cover" alt="current">
+                                <img src="{{ asset($project->image) }}" class="w-full h-full object-cover" alt="current">
                             </div>
                             <div class="space-y-1">
                                 <p class="text-xs font-black uppercase tracking-widest text-slate-400">Current Image</p>

@@ -28,8 +28,8 @@ class GraphicDesignController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image_upload' => 'nullable|image|max:4096',
-            'image_url' => 'nullable|url',
+            'image_upload' => 'required_without:image_url|nullable|image|max:4096',
+            'image_url' => 'required_without:image_upload|nullable|url',
             'description' => 'nullable|string',
             'category' => 'nullable|string',
             'tools' => 'nullable|string',

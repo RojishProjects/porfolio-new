@@ -110,7 +110,7 @@
                                     <td class="px-8 py-6">
                                         <div class="flex items-center gap-5">
                                             <div class="relative flex-shrink-0">
-                                                <img src="{{ $project->image }}" alt="{{ $project->title }}" class="h-20 w-20 object-cover rounded-2xl shadow-sm border border-slate-100">
+                                                <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="h-20 w-20 object-cover rounded-2xl shadow-sm border border-slate-100">
                                             </div>
                                             <div>
                                                 <h4 class="text-base font-black text-slate-900 uppercase tracking-tight">{{ $project->title }}</h4>

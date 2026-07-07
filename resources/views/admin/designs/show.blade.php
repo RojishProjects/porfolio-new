@@ -35,7 +35,7 @@
             <div class="relative bg-slate-900 flex items-center justify-center min-h-[400px] md:min-h-[600px]" style="background: repeating-conic-gradient(#f1f5f9 0% 25%, #e2e8f0 0% 50%) 0 0 / 24px 24px;">
                 @if($design->image)
                     <img
-                        src="{{ $design->image }}"
+                        src="{{ asset($design->image) }}"
                         alt="{{ $design->title }}"
                         class="max-w-full max-h-[80vh] object-contain drop-shadow-2xl"
                     >

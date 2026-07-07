@@ -27,8 +27,8 @@ class ProjectController extends Controller
             'description' => 'nullable|string',
             'category' => 'nullable|string',
             'tags' => 'nullable|string',
-            'image_upload' => 'nullable|image|max:4096',
-            'image_url' => 'nullable|url',
+            'image_upload' => 'required_without:image_url|nullable|image|max:4096',
+            'image_url' => 'required_without:image_upload|nullable|url',
             'project_url' => 'nullable|url',
             'icon' => 'nullable|string',
         ]);
