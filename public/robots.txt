@@ -1,4 +1,7 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /dashboard
 
 Sitemap: https://rojishbhurtel.com.np/sitemap.xml

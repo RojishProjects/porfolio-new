@@ -5,27 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Full Stack Developer & AI Specialist</title>
-    <meta name="description" content="{{ $settings['about_summary'] ?? 'Portfolio of Rojish Bhurtel, a Full Stack Developer, Youth Leader, and Generative AI Specialist based in Nepal.' }}">
-    <meta name="keywords" content="Rojish Bhurtel, Rojish, Developer Nepal, Laravel Developer, AI Specialist Nepal, Full Stack Developer, Portfolio">
-    <meta name="author" content="Rojish Bhurtel">
-    <link rel="canonical" href="https://rojishbhurtel.com.np">
+    <title>{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Full Stack Developer & AI Specialist | Kawasoti</title>
+    <meta name="description" content="{{ $settings['about_summary'] ?? 'Portfolio of Rojish Bhurtel, a Full Stack Developer, Tech Developer, and Generative AI Specialist based in Kawasoti, Nepal.' }}">
+    <meta name="keywords" content="Rojish Bhurtel, Rojish, Kawasoti, Tech, Developer, Laravel Developer, AI Developer, Generative AI Specialist, Full Stack Developer Nepal, Portfolio">
+    <meta name="author" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="canonical" href="{{ url('/') }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rojishbhurtel.com.np">
+    <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio">
     <meta property="og:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
     <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rojishbhurtel.com.np">
-    <meta property="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio">
-    <meta property="twitter:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
-    <meta property="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech Developer">
+    <meta name="twitter:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
+    <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta name="twitter:creator" content="@rojishbhurtel">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "{{ url('/') }}#person",
+          "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}",
+          "url": "{{ url('/') }}",
+          "image": "{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}",
+          "jobTitle": "Full Stack Developer & Generative AI Specialist",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kawasoti",
+            "addressCountry": "Nepal"
+          },
+          "description": "Full Stack Developer and AI Specialist based in Kawasoti, Nepal.",
+          "sameAs": []
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ url('/') }}#website",
+          "url": "{{ url('/') }}",
+          "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio",
+          "publisher": {
+            "@id": "{{ url('/') }}#person"
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -165,16 +210,16 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4">
-                    <button onclick="scrollToSection('#home')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Home</button>
-                    <button onclick="scrollToSection('#about')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">About Me</button>
-                    <button onclick="scrollToSection('#skills')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Skills</button>
-                    <button onclick="scrollToSection('#designs')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Designs</button>
-                    <button onclick="scrollToSection('#projects')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Projects</button>
-                    <button onclick="scrollToSection('#contact')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Contact</button>
+                    <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Home</a>
+                    <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">About Me</a>
+                    <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Skills</a>
+                    <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Designs</a>
+                    <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Projects</a>
+                    <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Contact</a>
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
+                    <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden text-gray-400 hover:text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -186,12 +231,12 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden bg-slate-900/95 backdrop-blur-sm fixed top-16 left-0 w-full h-screen">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <button onclick="scrollToSection('#home')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Home</button>
-                <button onclick="scrollToSection('#about')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">About</button>
-                <button onclick="scrollToSection('#skills')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Skills</button>
-                <button onclick="scrollToSection('#designs')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Designs</button>
-                <button onclick="scrollToSection('#projects')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Projects</button>
-                <button onclick="scrollToSection('#contact')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Contact</button>
+                <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Home</a>
+                <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">About</a>
+                <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Skills</a>
+                <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Designs</a>
+                <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Projects</a>
+                <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Contact</a>
             </div>
         </div>
     </nav>
@@ -219,12 +264,12 @@
                     </div>
                     
                     <div class="flex flex-col sm:flex-row gap-4 animate-delay-600">
-                        <button onclick="scrollToSection('#projects')" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
+                        <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 text-center">
                             View My Work
-                        </button>
-                        <button onclick="scrollToSection('#contact')" class="px-8 py-3 border-2 border-purple-400 text-purple-400 rounded-lg font-medium hover:bg-purple-400 hover:text-white transition-all duration-300">
+                        </a>
+                        <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="px-8 py-3 border-2 border-purple-400 text-purple-400 rounded-lg font-medium hover:bg-purple-400 hover:text-white transition-all duration-300 text-center">
                             Get In Touch
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="flex justify-center lg:justify-end animate-scale-in animate-delay-800">

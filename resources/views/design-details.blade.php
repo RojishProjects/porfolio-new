@@ -3,13 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $design->title }} | Rojish Bhurtel Design</title>
-    <meta name="description" content="{{ Str::limit($design->description, 160) }}">
-    <meta property="og:title" content="{{ $design->title }} | Rojish Bhurtel">
-    <meta property="og:description" content="{{ Str::limit($design->description, 160) }}">
-    <meta property="og:image" content="{{ asset($design->image) }}">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <title>{{ $design->title }} | Rojish Bhurtel Design | Graphic Designer</title>
+    <meta name="description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
+    <meta name="keywords" content="{{ implode(', ', $design->tools ?? []) }}, Graphic Design, Rojish Bhurtel, Kawasoti, Designer">
+    <meta name="author" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#020617">
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $design->title }} | Rojish Bhurtel">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
+    <meta property="og:image" content="{{ asset($design->image) }}">
+    <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="{{ $design->title }} | Rojish Bhurtel">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
+    <meta name="twitter:image" content="{{ asset($design->image) }}">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "{{ $design->title }}",
+      "description": "{{ Str::limit(strip_tags($design->description), 200) }}",
+      "url": "{{ url()->current() }}",
+      "image": "{{ asset($design->image) }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}"
+      },
+      "keywords": "{{ implode(', ', $design->tools ?? []) }}"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ url('/') }}"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Designs",
+        "item": "{{ url('/designs') }}"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ $design->title }}"
+      }]
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">

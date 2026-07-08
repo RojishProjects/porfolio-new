@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "r3ge",
+        "image": "\/storage\/designs\/r8ZHXLEx2VuKVT4BNzkq3meCmC9izZtij7dGagkT.jpg",
+        "description": "r",
+        "category": "greg",
+        "tools": [],
+        "created_at": "2026-05-12T10:12:22.000000Z",
+        "updated_at": "2026-05-12T10:12:22.000000Z",
+        "is_hidden": false
+    },
+    {
+        "id": 2,
+        "title": "Nexus UI: AI Dashboard",
+        "image": "uploads\/ai\/futuristic_ui_design.png",
+        "description": "A futuristic dashboard concept for managing distributed AI clusters. Features glassmorphism and real-time data visualizations.",
+        "category": "UI\/UX Design",
+        "tools": [
+            "Figma",
+            "Adobe XD",
+            "Illustrator"
+        ],
+        "created_at": "2026-05-13T08:26:45.000000Z",
+        "updated_at": "2026-05-13T08:26:45.000000Z",
+        "is_hidden": false
+    },
+    {
+        "id": 3,
+        "title": "Cerebra AI Branding",
+        "image": "uploads\/ai\/ai_logo_concept.png",
+        "description": "Brand identity design for a cognitive computing startup. The logo represents the intersection of human intuition and artificial intelligence.",
+        "category": "Branding",
+        "tools": [
+            "Photoshop",
+            "Illustrator"
+        ],
+        "created_at": "2026-05-13T08:26:45.000000Z",
+        "updated_at": "2026-05-13T08:26:45.000000Z",
+        "is_hidden": false
+    }
+]

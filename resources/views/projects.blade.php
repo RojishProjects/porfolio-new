@@ -3,10 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Projects — {{ $settings['hero_name'] ?? 'Portfolio' }}</title>
+    <title>All Projects — {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio</title>
+    <meta name="description" content="View all web development and software projects by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}, a Full Stack Developer based in Kawasoti.">
+    <meta name="keywords" content="Rojish Bhurtel Projects, Developer Projects, Tech Portfolio Kawasoti, Full Stack Projects">
+    <meta name="author" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#020617">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="All Projects — {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta property="og:description" content="View all web development and software projects by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}, a Full Stack Developer based in Kawasoti.">
+    <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="All Projects — {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta name="twitter:description" content="View all web development and software projects by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}, a Full Stack Developer based in Kawasoti.">
+    <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ url('/') }}"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "{{ url('/projects') }}"
+      }]
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
