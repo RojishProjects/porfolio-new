@@ -54,6 +54,15 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
     Route::post('settings/toggle-status', [SettingController::class, 'toggleSystemStatus'])->name('settings.toggle-status');
+
+    // Clear all caches — run this after each deployment
+    Route::get('clear-cache', function () {
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        return response()->json(['status' => 'All caches cleared successfully! ✅']);
+    })->name('clear-cache');
 });
 
 
