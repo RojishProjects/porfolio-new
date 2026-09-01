@@ -5,71 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Full Stack Developer & AI Specialist | Kawasoti</title>
-    <meta name="description" content="{{ $settings['about_summary'] ?? 'Portfolio of Rojish Bhurtel, a Full Stack Developer, Tech Developer, and Generative AI Specialist based in Kawasoti, Nepal.' }}">
-    <meta name="keywords" content="Rojish Bhurtel, Rojish, Kawasoti, Tech, Developer, Laravel Developer, AI Developer, Generative AI Specialist, Full Stack Developer Nepal, Portfolio">
+    <title>{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech & IT Developer | Youth Leader · Kawasoti, Nepal</title>
+    <meta name="description" content="{{ $settings['about_summary'] ?? 'Official portfolio of Rojish Bhurtel — Full Stack Tech & IT Developer, Generative AI Specialist, and Youth Leader based in Kawasoti, Nawalpur, Nepal. Explore web projects, design showcase, and skills.' }}">
+    <meta name="keywords" content="Rojish Bhurtel, Rojish, Rojish Bhurtel Nepal, Rojish Kawasoti, Rojish Developer, Rojish IT, Rojish Tech, Developer in Kawasoti, IT Developer in Kawasoti, Tech Developer in Nepal, Youth Leader Kawasoti, Rojish Youth Leader, Rojish Tech Developer, Full Stack Developer Nepal, Generative AI Specialist, Portfolio">
     <meta name="author" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#0f172a">
+    
+    <!-- Geo / Local SEO Meta Tags -->
+    <meta name="geo.region" content="NP-P3">
+    <meta name="geo.placename" content="Kawasoti, Nawalpur, Nepal">
+    <meta name="geo.position" content="27.6534;84.1264">
+    <meta name="ICBM" content="27.6534, 84.1264">
+
     <link rel="canonical" href="{{ url('/') }}">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Portfolio">
-    <meta property="og:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
+    <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech & IT Developer | Youth Leader · Kawasoti, Nepal">
+    <meta property="og:description" content="Explore the portfolio of Rojish Bhurtel — Full Stack Tech Developer, Generative AI Specialist, and Youth Leader from Kawasoti, Nepal.">
     <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta property="og:image:alt" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech and IT Developer from Kawasoti, Nepal">
     <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ url('/') }}">
-    <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech Developer">
-    <meta name="twitter:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
+    <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech Developer & Youth Leader · Kawasoti">
+    <meta name="twitter:description" content="Official portfolio of Rojish Bhurtel — Full Stack Tech Developer & Youth Leader from Kawasoti, Nepal.">
     <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta name="twitter:image:alt" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech Developer from Kawasoti, Nepal">
     <meta name="twitter:creator" content="@@rojishbhurtel">
 
     <!-- Structured Data -->
     <?php
+    $heroImg = asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg');
+    $siteUrl = url('/');
+    $personName = $settings['hero_name'] ?? 'Rojish Bhurtel';
+
     $ldJson = [
         '@context' => 'https://schema.org',
         '@graph' => [
             [
-                '@type'       => 'Person',
-                '@id'         => url('/') . '#person',
-                'name'        => $settings['hero_name'] ?? 'Rojish Bhurtel',
-                'url'         => url('/'),
-                'image'       => asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg'),
-                'jobTitle'    => 'Full Stack Developer & Generative AI Specialist',
-                'worksFor'    => ['@type' => 'Organization', 'name' => 'Freelance'],
-                'address'     => [
+                '@type'         => 'Person',
+                '@id'           => $siteUrl . '/#person',
+                'name'          => $personName,
+                'alternateName' => ['Rojish', 'Rojish Bhurtel Nepal', 'Rojish Kawasoti'],
+                'url'           => $siteUrl,
+                'image'         => [
+                    '@type'      => 'ImageObject',
+                    '@id'        => $siteUrl . '/#primaryimage',
+                    'url'        => $heroImg,
+                    'caption'    => $personName . ' - Tech and IT Developer from Kawasoti, Nepal',
+                ],
+                'jobTitle'      => 'Full Stack Tech & IT Developer, Generative AI Specialist, Youth Leader',
+                'description'   => $settings['about_summary'] ?? 'Full Stack Developer, Tech Developer, and Generative AI Specialist based in Kawasoti, Nepal.',
+                'worksFor'      => [
+                    '@type' => 'Organization',
+                    'name'  => 'Freelance / Tech Consultant',
+                ],
+                'homeLocation'  => [
+                    '@type' => 'Place',
+                    'name'  => 'Kawasoti, Nawalpur, Nepal',
+                ],
+                'address'       => [
                     '@type'           => 'PostalAddress',
                     'addressLocality' => 'Kawasoti',
+                    'addressRegion'   => 'Nawalpur / Gandaki Province',
                     'addressCountry'  => 'Nepal',
                 ],
-                'description' => 'Full Stack Developer and AI Specialist based in Kawasoti, Nepal.',
-                'sameAs'      => [],
+                'knowsAbout'    => [
+                    'Full Stack Development',
+                    'Laravel Framework',
+                    'PHP',
+                    'Web Application Development',
+                    'Generative AI',
+                    'Prompt Engineering',
+                    'Graphic Design & UI/UX',
+                    'Youth Leadership & Community Empowerment',
+                    'IT Solutions in Kawasoti',
+                ],
+                'sameAs'        => [],
             ],
             [
-                '@type'     => 'WebSite',
-                '@id'       => url('/') . '#website',
-                'url'       => url('/'),
-                'name'      => ($settings['hero_name'] ?? 'Rojish Bhurtel') . ' Portfolio',
-                'publisher' => ['@id' => url('/') . '#person'],
+                '@type'       => 'WebSite',
+                '@id'         => $siteUrl . '/#website',
+                'url'         => $siteUrl,
+                'name'        => $personName . ' | Official Portfolio',
+                'description' => 'Official website of ' . $personName . ', Tech & IT Developer and Youth Leader based in Kawasoti, Nepal.',
+                'publisher'   => ['@id' => $siteUrl . '/#person'],
+                'inLanguage'  => 'en',
             ],
+            [
+                '@type'         => 'ProfilePage',
+                '@id'           => $siteUrl . '/#profilepage',
+                'url'           => $siteUrl,
+                'name'          => $personName . ' — Tech & IT Developer from Kawasoti, Nepal',
+                'isPartOf'      => ['@id' => $siteUrl . '/#website'],
+                'about'         => ['@id' => $siteUrl . '/#person'],
+                'primaryImageOfPage' => ['@id' => $siteUrl . '/#primaryimage'],
+                'breadcrumb'    => [
+                    '@type'           => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type'    => 'ListItem',
+                            'position' => 1,
+                            'name'     => 'Home',
+                            'item'     => $siteUrl,
+                        ]
+                    ]
+                ]
+            ]
         ],
     ];
     ?>
     <script type="application/ld+json"><?php echo json_encode($ldJson, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?></script>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @verbatim
     <style>
@@ -197,372 +256,412 @@
             <div class="loader-logo">RB</div>
         </div>
     </div>
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                        {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}
-                    </h1>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Home</a>
-                    <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">About Me</a>
-                    <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Skills</a>
-                    <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Designs</a>
-                    <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Projects</a>
-                    <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden text-gray-400 hover:text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-slate-900/95 backdrop-blur-sm fixed top-16 left-0 w-full h-screen">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Home</a>
-                <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">About</a>
-                <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Skills</a>
-                <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Designs</a>
-                <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Projects</a>
-                <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-        <div class="max-w-7xl mx-auto w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
-                    <div class="space-y-4">
-                        <h2 class="text-lg text-purple-400 font-medium animate-slide-in-right animate-delay-200">Hello, I'm</h2>
-                        <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight">
-                            <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
-                                {{ explode(' ', $settings['hero_name'] ?? 'Rojish')[0] }}
-                            </span>
-                            <br>
-                            <span class="text-white">{{ str_replace(explode(' ', $settings['hero_name'] ?? 'Rojish Bhurtel')[0], '', $settings['hero_name'] ?? 'Rojish Bhurtel') }}</span>
-                        </h1>
-                        <div class="text-xl lg:text-3xl font-medium text-purple-300 min-h-[3rem]">
-                            <span id="typing-text"></span><span class="animate-pulse">|</span>
-                        </div>
-                        <p class="text-lg text-gray-400 animate-fade-in animate-delay-400 max-w-lg">
-                            {{ $settings['hero_tagline'] ?? 'Passionate about creating digital solutions and leading positive change' }}
-                        </p>
+    <!-- Header & Navbar -->
+    <header>
+        <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent" aria-label="Main Navigation">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex-shrink-0">
+                        <a href="{{ url('/') }}" class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent" aria-label="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Home">
+                            {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}
+                        </a>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 animate-delay-600">
-                        <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 text-center">
-                            View My Work
-                        </a>
-                        <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="px-8 py-3 border-2 border-purple-400 text-purple-400 rounded-lg font-medium hover:bg-purple-400 hover:text-white transition-all duration-300 text-center">
-                            Get In Touch
-                        </a>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Home</a>
+                        <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">About Me</a>
+                        <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Skills</a>
+                        <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Designs</a>
+                        <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Projects</a>
+                        <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-purple-500/20">Contact</a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden text-gray-400 hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="flex justify-center lg:justify-end animate-scale-in animate-delay-800">
-                    <div class="relative">
-                        <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-1.5 animate-pulse relative z-10">
-                            <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center p-3 lg:p-4">
-                                <div class="w-full h-full rounded-full border-2 border-white/10 overflow-hidden shadow-inner">
-                                    <img src="{{ isset($settings['hero_image']) ? asset($settings['hero_image']) : asset('IMG_20241005_031308.jpg') }}" 
-                                         alt="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}" 
-                                         class="w-full h-full object-cover">
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden bg-slate-900/95 backdrop-blur-sm fixed top-16 left-0 w-full h-screen">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#home" onclick="event.preventDefault(); scrollToSection('#home')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Home</a>
+                    <a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">About</a>
+                    <a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Skills</a>
+                    <a href="#designs" onclick="event.preventDefault(); scrollToSection('#designs')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Designs</a>
+                    <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Projects</a>
+                    <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 hover:bg-purple-500/20">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <h2 class="text-lg text-purple-400 font-medium animate-slide-in-right animate-delay-200">Hello, I'm</h2>
+                            <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight">
+                                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+                                    {{ explode(' ', $settings['hero_name'] ?? 'Rojish')[0] }}
+                                </span>
+                                <br>
+                                <span class="text-white">{{ str_replace(explode(' ', $settings['hero_name'] ?? 'Rojish Bhurtel')[0], '', $settings['hero_name'] ?? 'Rojish Bhurtel') }}</span>
+                                <span class="sr-only"> — Tech &amp; IT Developer | Youth Leader from Kawasoti, Nepal</span>
+                            </h1>
+                            <div class="text-xl lg:text-3xl font-medium text-purple-300 min-h-[3rem]">
+                                <span id="typing-text"></span><span class="animate-pulse">|</span>
+                            </div>
+                            <p class="text-lg text-gray-400 animate-fade-in animate-delay-400 max-w-lg">
+                                {{ $settings['hero_tagline'] ?? 'Passionate about creating digital solutions and leading positive change' }}
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 animate-delay-600">
+                            <a href="#projects" onclick="event.preventDefault(); scrollToSection('#projects')" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 text-center">
+                                View My Work
+                            </a>
+                            <a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="px-8 py-3 border-2 border-purple-400 text-purple-400 rounded-lg font-medium hover:bg-purple-400 hover:text-white transition-all duration-300 text-center">
+                                Get In Touch
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center lg:justify-end animate-scale-in animate-delay-800">
+                        <div class="relative">
+                            <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-1.5 animate-pulse relative z-10">
+                                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center p-3 lg:p-4">
+                                    <div class="w-full h-full rounded-full border-2 border-white/10 overflow-hidden shadow-inner">
+                                        <img src="{{ isset($settings['hero_image']) ? asset($settings['hero_image']) : asset('IMG_20241005_031308.jpg') }}" 
+                                             alt="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech and IT Developer from Kawasoti, Nepal" 
+                                             width="384"
+                                             height="384"
+                                             fetchpriority="high"
+                                             loading="eager"
+                                             decoding="async"
+                                             class="w-full h-full object-cover">
+                                    </div>
                                 </div>
                             </div>
+                            <!-- Decorative Floating Circles -->
+                            <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-bounce z-0"></div>
+                            <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-bounce z-0" style="animation-delay: 0.5s;"></div>
                         </div>
-                        <!-- Decorative Floating Circles -->
-                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-bounce z-0"></div>
-                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-bounce z-0" style="animation-delay: 0.5s;"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16  " data-animate>
-                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
-                    About <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    {{ $settings['about_summary'] ?? 'A multi-faceted professional passionate about technology, leadership, and creative marketing solutions.' }}
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                @foreach($about_roles as $index => $role)
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20  " data-animate data-delay="{{ ($index + 1) * 200 }}">
-                    <div class="flex items-center mb-6">
-                        <div class="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mr-4">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">{{ $role->title }}</h3>
-                    </div>
-                    
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        {{ $role->description }}
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16  " data-animate>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        About <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        {{ $settings['about_summary'] ?? 'A multi-faceted professional passionate about technology, leadership, and creative marketing solutions.' }}
                     </p>
-                    
-                    @if($role->key_areas)
-                    <div class="space-y-2">
-                        <h4 class="text-purple-400 font-semibold">Key Areas:</h4>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach($role->key_areas as $area)
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm hover:bg-purple-500/30 transition-colors duration-300">{{ $area }}</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    @foreach($about_roles as $index => $role)
+                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20  " data-animate data-delay="{{ ($index + 1) * 200 }}">
+                        <div class="flex items-center mb-6">
+                            <div class="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">{{ $role->title }}</h3>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            {{ $role->description }}
+                        </p>
+                        
+                        @if($role->key_areas)
+                        <div class="space-y-2">
+                            <h4 class="text-purple-400 font-semibold">Key Areas:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach($role->key_areas as $area)
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm hover:bg-purple-500/30 transition-colors duration-300">{{ $area }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+                <!-- Stats Section -->
+                <div class="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-8" data-animate>
+                    <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+                        <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_projects'] ?? '50' }}">0</div>
+                        <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Projects Done</div>
+                    </div>
+                    <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+                        <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_clients'] ?? '15' }}">0</div>
+                        <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Happy Clients</div>
+                    </div>
+                    <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+                        <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_experience'] ?? '5' }}">0</div>
+                        <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Years Exp.</div>
+                    </div>
+                    <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
+                        <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_certifications'] ?? '10' }}">0</div>
+                        <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Certifications</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16  " data-animate>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        My <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Skills</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        A comprehensive overview of my technical and soft skills across different domains.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    @foreach($skills as $category => $categorySkills)
+                    <div class="bg-slate-900/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-900/70 transition-all duration-300 border border-transparent hover:border-purple-500/30 group" data-animate data-delay="{{ $loop->iteration * 200 }}">
+                        <h3 class="text-2xl font-bold text-white mb-6 text-center group-hover:text-purple-400 transition-colors">{{ $category }}</h3>
+                        <div class="space-y-6">
+                            @foreach($categorySkills as $skill)
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center px-1">
+                                    <span class="text-gray-300 font-medium">{{ $skill->name }}</span>
+                                    <span class="text-purple-400 text-sm">{{ $skill->percentage }}%</span>
+                                </div>
+                                <div class="w-full bg-slate-700/50 rounded-full h-2">
+                                    <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" data-width="{{ $skill->percentage }}"></div>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-            <!-- Stats Section -->
-            <div class="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-8" data-animate>
-                <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
-                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_projects'] ?? '50' }}">0</div>
-                    <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Projects Done</div>
-                </div>
-                <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
-                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_clients'] ?? '15' }}">0</div>
-                    <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Happy Clients</div>
-                </div>
-                <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
-                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_experience'] ?? '5' }}">0</div>
-                    <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Years Exp.</div>
-                </div>
-                <div class="text-center p-8 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors group">
-                    <div class="text-4xl lg:text-5xl font-extrabold text-white mb-2 counter" data-target="{{ $settings['stats_certifications'] ?? '10' }}">0</div>
-                    <div class="text-purple-400 font-bold uppercase tracking-widest text-xs group-hover:text-pink-400 transition-colors">Certifications</div>
+                    @endforeach
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16  " data-animate>
-                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
-                    My <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Skills</span>
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    A comprehensive overview of my technical and soft skills across different domains.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                @foreach($skills as $category => $categorySkills)
-                <div class="bg-slate-900/50 backdrop-blur-sm rounded-xl p-8 hover:bg-slate-900/70 transition-all duration-300 border border-transparent hover:border-purple-500/30 group" data-animate data-delay="{{ $loop->iteration * 200 }}">
-                    <h3 class="text-2xl font-bold text-white mb-6 text-center group-hover:text-purple-400 transition-colors">{{ $category }}</h3>
-                    <div class="space-y-6">
-                        @foreach($categorySkills as $skill)
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center px-1">
-                                <span class="text-gray-300 font-medium">{{ $skill->name }}</span>
-                                <span class="text-purple-400 text-sm">{{ $skill->percentage }}%</span>
-                            </div>
-                            <div class="w-full bg-slate-700/50 rounded-full h-2">
-                                <div class="skill-bar bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" data-width="{{ $skill->percentage }}"></div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Graphic Design Section -->
-    <section id="designs" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-animate>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Graphic Design Showcase</h2>
-                <div class="h-1.5 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
-                <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto italic">"Visualizing ideas through creative precision and bold aesthetics."</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($designs as $index => $design)
-                    <x-portfolio-card 
-                        :item="$design" 
-                        route="design.show" 
-                        :index="$index" 
-                        :details="$design->tools ?? []"
-                    />
-                @endforeach
-            </div>
-            
-            @if($designs->isEmpty())
-            <div class="text-center py-20 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700">
-                <p class="text-gray-500 text-lg font-medium">Design projects coming soon...</p>
-            </div>
-            @endif
-
-            @if(isset($totalDesigns) && $totalDesigns > 6)
-            <div class="text-center mt-12" data-animate>
-                <a href="{{ route('designs.index') }}" class="inline-flex items-center gap-2 px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/20 group">
-                    See All Designs
-                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-            </div>
-            @endif
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16" data-animate>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">My Projects</h2>
-                <div class="h-1.5 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
-                <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto italic">"Turning complex problems into elegant, functional digital solutions."</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($projects as $index => $project)
-                    <x-portfolio-card 
-                        :item="$project" 
-                        route="project.show" 
-                        :index="$index" 
-                        :details="$project->tags ?? []"
-                    />
-                @endforeach
-            </div>
-
-            @if($projects->isEmpty())
-            <div class="text-center py-20 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700">
-                <p class="text-gray-500 text-lg font-medium">Projects coming soon...</p>
-            </div>
-            @endif
-
-            @if(isset($totalProjects) && $totalProjects > 6)
-            <div class="text-center mt-12" data-animate>
-                <a href="{{ route('projects.index') }}" class="inline-flex items-center gap-2 px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/20 group">
-                    See All Projects
-                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-            </div>
-            @endif
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16  " data-animate>
-                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
-                    Get In <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Ready to start a conversation? I'd love to hear from you.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="space-y-8  " data-animate data-delay="200">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
-                            Whether you're looking for a developer, need leadership guidance, or want to discuss marketing strategies, 
-                            I'm here to help bring your ideas to life.
-                        </p>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
-                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold">📧</span>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Email</h4>
-                                <p class="text-gray-300">{{ $settings['contact_email'] ?? 'rojish.bhurtel@example.com' }}</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
-                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold">📱</span>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Phone</h4>
-                                <p class="text-gray-300">{{ $settings['contact_phone'] ?? '+977 98XXXXXXXX' }}</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
-                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold">📍</span>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Location</h4>
-                                <p class="text-gray-300">{{ $settings['contact_location'] ?? 'Kathmandu, Nepal' }}</p>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Graphic Design Section -->
+        <section id="designs" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16" data-animate>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Graphic Design Showcase</h2>
+                    <div class="h-1.5 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto italic">"Visualizing ideas through creative precision and bold aesthetics."</p>
                 </div>
 
-                <div class=" " data-animate data-delay="400">
-                    <form id="contact-form" class="space-y-6">
-                        @csrf
-                        <div id="form-message" class="hidden px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($designs as $index => $design)
+                        <x-portfolio-card 
+                            :item="$design" 
+                            route="design.show" 
+                            :index="$index" 
+                            :details="$design->tools ?? []"
+                        />
+                    @endforeach
+                </div>
+                
+                @if($designs->isEmpty())
+                <div class="text-center py-20 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700">
+                    <p class="text-gray-500 text-lg font-medium">Design projects coming soon...</p>
+                </div>
+                @endif
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="Your Name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="your@email.com">
-                            </div>
-                        </div>
+                @if(isset($totalDesigns) && $totalDesigns > 6)
+                <div class="text-center mt-12" data-animate>
+                    <a href="{{ route('designs.index') }}" class="inline-flex items-center gap-2 px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/20 group">
+                        See All Designs
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+                @endif
+            </div>
+        </section>
 
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16" data-animate>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">My Projects</h2>
+                    <div class="h-1.5 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+                    <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto italic">"Turning complex problems into elegant, functional digital solutions."</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach($projects as $index => $project)
+                        <x-portfolio-card 
+                            :item="$project" 
+                            route="project.show" 
+                            :index="$index" 
+                            :details="$project->tags ?? []"
+                        />
+                    @endforeach
+                </div>
+
+                @if($projects->isEmpty())
+                <div class="text-center py-20 bg-slate-800/20 rounded-3xl border border-dashed border-slate-700">
+                    <p class="text-gray-500 text-lg font-medium">Projects coming soon...</p>
+                </div>
+                @endif
+
+                @if(isset($totalProjects) && $totalProjects > 6)
+                <div class="text-center mt-12" data-animate>
+                    <a href="{{ route('projects.index') }}" class="inline-flex items-center gap-2 px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/20 group">
+                        See All Projects
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+                @endif
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16  " data-animate>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Get In <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Ready to start a conversation? I'd love to hear from you.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="space-y-8  " data-animate data-delay="200">
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="What's this about?">
+                            <h3 class="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+                            <p class="text-gray-300 mb-8 leading-relaxed">
+                                Whether you're looking for a developer, need leadership guidance, or want to discuss marketing strategies, 
+                                I'm here to help bring your ideas to life.
+                            </p>
                         </div>
 
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" required rows="6" class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none" placeholder="Tell me about your project or idea..."></textarea>
-                        </div>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold">📧</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Email</h4>
+                                    <p class="text-gray-300">{{ $settings['contact_email'] ?? 'rojish.bhurtel@example.com' }}</p>
+                                </div>
+                            </div>
 
-                        <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
-                            Send Message
-                        </button>
-                    </form>
+                            <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold">📱</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Phone</h4>
+                                    <p class="text-gray-300">{{ $settings['contact_phone'] ?? '+977 98XXXXXXXX' }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4 p-4 bg-slate-900/50 rounded-lg hover:bg-slate-900/70 transition-all duration-300">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold">📍</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Location</h4>
+                                    <p class="text-gray-300">{{ $settings['contact_location'] ?? 'Kawasoti, Nawalpur, Nepal' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" " data-animate data-delay="400">
+                        <form id="contact-form" class="space-y-6">
+                            @csrf
+                            <div id="form-message" class="hidden px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300"></div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="your@email.com">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300" placeholder="What's this about?">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea id="message" name="message" required rows="6" class="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none" placeholder="Tell me about your project or idea..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="relative py-12 overflow-hidden">
+    <footer class="relative py-14 overflow-hidden border-t border-slate-800/80 bg-[#020408]" role="contentinfo">
         <!-- Stylish Background Glow -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-        <div class="absolute inset-0 bg-[#020408]"></div>
-        <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/10 rounded-full blur-[100px]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+        <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
         
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
-            <p class="text-slate-400 text-sm font-medium tracking-[0.1em]">
-                {!! $settings['footer_text'] ?? '&copy; ' . date('Y') . ' ' . ($settings['hero_name'] ?? 'Rojish Bhurtel') . ' &bull; All Rights Reserved' !!}
-            </p>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 text-center md:text-left">
+                <div>
+                    <h3 class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                        {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        Full Stack Tech &amp; IT Developer, Generative AI Specialist, and Youth Leader based in Kawasoti, Nawalpur, Nepal.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-3">Quick Navigation</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#about" onclick="event.preventDefault(); scrollToSection('#about')" class="hover:text-purple-400 transition-colors">About Rojish</a></li>
+                        <li><a href="#skills" onclick="event.preventDefault(); scrollToSection('#skills')" class="hover:text-purple-400 transition-colors">Tech &amp; IT Skills</a></li>
+                        <li><a href="{{ route('projects.index') }}" class="hover:text-purple-400 transition-colors">Software &amp; Web Projects</a></li>
+                        <li><a href="{{ route('designs.index') }}" class="hover:text-purple-400 transition-colors">Graphic Design Showcase</a></li>
+                        <li><a href="#contact" onclick="event.preventDefault(); scrollToSection('#contact')" class="hover:text-purple-400 transition-colors">Get In Touch</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-3">Location &amp; Availability</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        📍 Kawasoti, Nawalpur, Gandaki Province, Nepal<br>
+                        💼 Available for Freelance, Tech Consulting &amp; Collaborative Projects.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800/80 text-center">
+                <p class="text-slate-500 text-xs font-medium tracking-[0.1em]">
+                    {!! $settings['footer_text'] ?? '&copy; ' . date('Y') . ' ' . ($settings['hero_name'] ?? 'Rojish Bhurtel') . ' &bull; All Rights Reserved' !!}
+                </p>
+            </div>
         </div>
     </footer>
 

@@ -3,6 +3,7 @@
 <a href="{{ route($route, $item) }}" 
    target="_blank" 
    rel="noopener noreferrer" 
+   aria-label="View details for {{ $item->title }}"
    class="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/20 block magnetic-card" 
    data-animate 
    data-delay="{{ ($index + 1) * 100 }}">
@@ -10,8 +11,11 @@
     <div class="relative h-64 overflow-hidden">
         @if($item->image)
             <img src="{{ asset($item->image) }}" 
-                 alt="{{ $item->title }}" 
+                 alt="{{ $item->title }} — {{ $route === 'project.show' ? 'Web & Software Project' : 'Graphic Design' }} by Rojish Bhurtel" 
+                 width="400"
+                 height="256"
                  loading="lazy"
+                 decoding="async"
                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
         @else
             <div class="w-full h-full bg-slate-700 flex items-center justify-center">

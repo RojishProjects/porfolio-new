@@ -3,74 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $design->title }} | Rojish Bhurtel Design | Graphic Designer</title>
-    <meta name="description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
-    <meta name="keywords" content="{{ implode(', ', $design->tools ?? []) }}, Graphic Design, Rojish Bhurtel, Kawasoti, Designer">
+    <title>{{ $design->title }} — Graphic Design by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Visual Designer</title>
+    <meta name="description" content="{{ Str::limit(strip_tags($design->description), 155) }}">
+    <meta name="keywords" content="{{ implode(', ', $design->tools ?? []) }}, {{ $design->title }}, Graphic Design Kawasoti, UI/UX Nepal, Rojish Bhurtel, Designer Nepal">
     <meta name="author" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#020617">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ route('design.show', $design) }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $design->title }} | Rojish Bhurtel">
-    <meta property="og:description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
+    <meta property="og:url" content="{{ route('design.show', $design) }}">
+    <meta property="og:title" content="{{ $design->title }} — Design by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($design->description), 155) }}">
     <meta property="og:image" content="{{ asset($design->image) }}">
+    <meta property="og:image:alt" content="{{ $design->title }} by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
     <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ url()->current() }}">
-    <meta name="twitter:title" content="{{ $design->title }} | Rojish Bhurtel">
-    <meta name="twitter:description" content="{{ Str::limit(strip_tags($design->description), 160) }}">
+    <meta name="twitter:url" content="{{ route('design.show', $design) }}">
+    <meta name="twitter:title" content="{{ $design->title }} | {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($design->description), 155) }}">
     <meta name="twitter:image" content="{{ asset($design->image) }}">
+    <meta name="twitter:creator" content="@@rojishbhurtel">
 
     <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "{{ $design->title }}",
-      "description": "{{ Str::limit(strip_tags($design->description), 200) }}",
-      "url": "{{ url()->current() }}",
-      "image": "{{ asset($design->image) }}",
-      "author": {
-        "@type": "Person",
-        "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}"
-      },
-      "keywords": "{{ implode(', ', $design->tools ?? []) }}"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "{{ url('/') }}"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Designs",
-        "item": "{{ url('/designs') }}"
-      },{
-        "@type": "ListItem",
-        "position": 3,
-        "name": "{{ $design->title }}"
-      }]
-    }
-    </script>
+    <?php
+    $designSchema = [
+        '@context'    => 'https://schema.org',
+        '@type'       => 'VisualArtwork',
+        'name'        => $design->title,
+        'description' => Str::limit(strip_tags($design->description), 200),
+        'url'         => route('design.show', $design),
+        'image'       => asset($design->image),
+        'creator'     => [
+            '@type' => 'Person',
+            'name'  => $settings['hero_name'] ?? 'Rojish Bhurtel',
+            'url'   => url('/'),
+        ],
+        'keywords'    => implode(', ', $design->tools ?? []),
+    ];
+
+    $breadcrumbSchema = [
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type'    => 'ListItem',
+                'position' => 1,
+                'name'     => 'Home',
+                'item'     => url('/'),
+            ],
+            [
+                '@type'    => 'ListItem',
+                'position' => 2,
+                'name'     => 'Graphic Designs',
+                'item'     => route('designs.index'),
+            ],
+            [
+                '@type'    => 'ListItem',
+                'position' => 3,
+                'name'     => $design->title,
+                'item'     => route('design.show', $design),
+            ],
+        ],
+    ];
+    ?>
+    <script type="application/ld+json"><?php echo json_encode($designSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?></script>
+    <script type="application/ld+json"><?php echo json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?></script>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"></noscript>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @verbatim
     <style>
         * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; }
 
@@ -89,29 +99,33 @@
             -webkit-user-drag: none;
         }
     </style>
+    @endverbatim
 </head>
 <body class="min-h-screen flex flex-col bg-slate-950 text-white selection:bg-purple-500 selection:text-white">
 
-    <!-- Navbar -->
-    <nav class="w-full sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md shadow-lg border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between py-4">
-                <a href="{{ route('portfolio') }}" class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-                    {{ $settings['hero_name'] ?? 'Portfolio' }}
-                </a>
-                
-                <a href="{{ route('portfolio') }}#designs" class="flex items-center gap-2 text-gray-300 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all hover:bg-slate-800 border border-transparent hover:border-slate-700">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Designs
-                </a>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="w-full sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md shadow-lg border-b border-slate-800" aria-label="Design Breadcrumb Navigation">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between py-4">
+                    <a href="{{ route('portfolio') }}" class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+                        {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}
+                    </a>
+                    
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('designs.index') }}" class="flex items-center gap-2 text-gray-300 hover:text-white px-4 py-2 rounded-xl text-sm font-bold transition-all hover:bg-slate-800 border border-transparent hover:border-slate-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Back to Designs
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main class="flex-grow w-full animate-fade-in">
-
         <!-- Hero Section -->
-        <section class="w-full bg-slate-950 flex items-center justify-center py-12 md:py-20 px-4 relative overflow-hidden">
+        <section class="w-full bg-slate-950 flex items-center justify-center py-12 md:py-20 px-4 relative overflow-hidden" aria-label="Design Visual Preview">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-700/10 rounded-full blur-[120px] pointer-events-none"></div>
             <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-700/10 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -119,8 +133,10 @@
                 <div class="relative z-10 max-w-4xl w-full mx-auto shadow-2xl rounded-2xl overflow-hidden group image-container">
                     <img
                         src="{{ asset($design->image) }}"
-                        alt="{{ $design->title }}"
+                        alt="{{ $design->title }} — Visual Design by {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}"
                         loading="lazy"
+                        width="896"
+                        height="504"
                         class="w-full h-auto block select-none group-hover:scale-[1.01] transition-transform duration-700"
                         oncontextmenu="return false;"
                         draggable="false"
@@ -132,7 +148,7 @@
                     <div class="w-24 h-24 bg-slate-800 rounded-3xl flex items-center justify-center mx-auto mb-4 border border-slate-700">
                         <svg class="w-12 h-12 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <p class="text-slate-500 font-bold">No image available</p>
+                    <p class="text-slate-500 font-bold">No preview available</p>
                 </div>
             @endif
         </section>
@@ -141,8 +157,17 @@
 
         <!-- Content -->
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <nav class="mb-8 text-xs font-semibold uppercase tracking-wider text-purple-400" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-2">
+                    <li><a href="{{ url('/') }}" class="hover:underline">Home</a></li>
+                    <li><span class="text-slate-600">/</span></li>
+                    <li><a href="{{ route('designs.index') }}" class="hover:underline">Designs</a></li>
+                    <li><span class="text-slate-600">/</span></li>
+                    <li class="text-slate-300 truncate max-w-xs">{{ $design->title }}</li>
+                </ol>
+            </nav>
 
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Main Info -->
                 <div class="lg:col-span-2 space-y-8">
                     @if($design->category)
@@ -182,6 +207,12 @@
                 <aside class="space-y-6">
                     <div class="bg-slate-900/50 backdrop-blur-sm rounded-3xl border border-slate-800 p-8 space-y-8 shadow-xl">
                         <div class="space-y-2">
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Designer</p>
+                            <p class="text-white font-bold">{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}</p>
+                            <p class="text-slate-500 text-xs">Kawasoti, Nawalpur, Nepal</p>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800 space-y-2">
                             <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Added</p>
                             <p class="text-white font-bold">{{ $design->created_at->format('d M Y') }}</p>
                             <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">{{ $design->created_at->diffForHumans() }}</p>
@@ -195,7 +226,7 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('portfolio') }}#designs"
+                    <a href="{{ route('designs.index') }}"
                        class="flex items-center justify-center gap-2 w-full py-5 text-xs font-black text-slate-400 uppercase tracking-widest hover:text-white bg-slate-900/50 hover:bg-slate-800 rounded-2xl border border-slate-800 transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         All Designs
@@ -205,10 +236,18 @@
         </div>
     </main>
 
-    <footer class="mt-auto border-t border-slate-900 bg-slate-950 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-slate-600 text-sm font-bold uppercase tracking-widest">&copy; {{ date('Y') }} {{ $settings['hero_name'] ?? 'Portfolio' }}.</p>
+    <footer class="mt-auto border-t border-slate-900 bg-slate-950 py-12" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <div class="flex justify-center flex-wrap gap-6 text-sm text-slate-400">
+                <a href="{{ url('/') }}" class="hover:text-purple-400 transition-colors">Home</a>
+                <a href="{{ route('designs.index') }}" class="hover:text-purple-400 transition-colors">All Designs</a>
+                <a href="{{ route('projects.index') }}" class="hover:text-purple-400 transition-colors">Web Projects</a>
+                <a href="{{ url('/#contact') }}" class="hover:text-purple-400 transition-colors">Contact Rojish</a>
+            </div>
+            <p class="text-slate-600 text-xs font-bold uppercase tracking-widest">&copy; {{ date('Y') }} {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} &bull; Kawasoti, Nepal &bull; All Rights Reserved.</p>
         </div>
     </footer>
+</body>
+</html>
 </body>
 </html>

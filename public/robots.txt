@@ -3,5 +3,11 @@ Allow: /
 Disallow: /admin
 Disallow: /login
 Disallow: /dashboard
+Disallow: /register
+Disallow: /password
+Disallow: /reset-password
+Disallow: /profile
 
+# Canonical Sitemap
 Sitemap: https://rojishbhurtel.com.np/sitemap.xml
+Host: https://rojishbhurtel.com.np
