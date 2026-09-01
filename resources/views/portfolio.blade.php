@@ -32,41 +32,37 @@
     <meta name="twitter:creator" content="@@rojishbhurtel">
 
     <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "{{ url('/') }}#person",
-          "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}",
-          "url": "{{ url('/') }}",
-          "image": "{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}",
-          "jobTitle": "Full Stack Developer & Generative AI Specialist",
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Freelance"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kawasoti",
-            "addressCountry": "Nepal"
-          },
-          "description": "Full Stack Developer and AI Specialist based in Kawasoti, Nepal.",
-          "sameAs": []
-        },
-        {
-          "@type": "WebSite",
-          "@id": "{{ url('/') }}#website",
-          "url": "{{ url('/') }}",
-          "name": "{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio",
-          "publisher": {
-            "@id": "{{ url('/') }}#person"
-          }
-        }
-      ]
-    }
-    </script>
+    <?php
+    $ldJson = [
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type'       => 'Person',
+                '@id'         => url('/') . '#person',
+                'name'        => $settings['hero_name'] ?? 'Rojish Bhurtel',
+                'url'         => url('/'),
+                'image'       => asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg'),
+                'jobTitle'    => 'Full Stack Developer & Generative AI Specialist',
+                'worksFor'    => ['@type' => 'Organization', 'name' => 'Freelance'],
+                'address'     => [
+                    '@type'           => 'PostalAddress',
+                    'addressLocality' => 'Kawasoti',
+                    'addressCountry'  => 'Nepal',
+                ],
+                'description' => 'Full Stack Developer and AI Specialist based in Kawasoti, Nepal.',
+                'sameAs'      => [],
+            ],
+            [
+                '@type'     => 'WebSite',
+                '@id'       => url('/') . '#website',
+                'url'       => url('/'),
+                'name'      => ($settings['hero_name'] ?? 'Rojish Bhurtel') . ' Portfolio',
+                'publisher' => ['@id' => url('/') . '#person'],
+            ],
+        ],
+    ];
+    ?>
+    <script type="application/ld+json"><?php echo json_encode($ldJson, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?></script>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
