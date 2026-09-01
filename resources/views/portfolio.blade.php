@@ -29,7 +29,7 @@
     <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech Developer">
     <meta name="twitter:description" content="{{ $settings['about_summary'] ?? 'Full Stack Developer & AI Specialist creating digital solutions.' }}">
     <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
-    <meta name="twitter:creator" content="@rojishbhurtel">
+    <meta name="twitter:creator" content="@@rojishbhurtel">
 
     <!-- Structured Data -->
     <script type="application/ld+json">

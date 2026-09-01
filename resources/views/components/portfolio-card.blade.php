@@ -49,7 +49,9 @@
         <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-700/50">
             @foreach($details as $detail)
             <span class="text-[10px] font-bold text-purple-300 uppercase tracking-tighter">{{ $detail }}</span>
-            @if(!$loop->last) <span class="text-slate-600">•</span> @endif
+            @if(!$loop->last)
+                <span class="text-slate-600">•</span>
+            @endif
             @endforeach
         </div>
         @endif
