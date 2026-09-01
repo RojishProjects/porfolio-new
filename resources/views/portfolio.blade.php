@@ -75,6 +75,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @verbatim
     <style>
         .animate-delay-200 { animation-delay: 0.2s; }
         .animate-delay-400 { animation-delay: 0.4s; }
@@ -191,6 +192,7 @@
 
 
     </style>
+    @endverbatim
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     <div id="loader">
