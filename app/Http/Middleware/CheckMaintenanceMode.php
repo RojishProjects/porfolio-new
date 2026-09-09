@@ -15,13 +15,19 @@ class CheckMaintenanceMode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $status = \App\Models\Setting::where('key', 'system_status')->value('value');
-        
-        if ($status === 'maintenance') {
-            // Exclude admin and login routes so the owner isn't locked out
-            if (!$request->is('admin*') && !$request->is('login') && !$request->is('logout') && !$request->is('register')) {
-                abort(503);
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                $status = \App\Models\Setting::where('key', 'system_status')->value('value');
+                
+                if ($status === 'maintenance') {
+                    // Exclude admin and login routes so the owner isn't locked out
+                    if (!$request->is('admin*') && !$request->is('login') && !$request->is('logout') && !$request->is('register')) {
+                        abort(503);
+                    }
+                }
             }
+        } catch (\Throwable $e) {
+            // Continue if database is not migrated yet
         }
         
         return $next($request);
