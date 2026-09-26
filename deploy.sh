@@ -1,16 +1,19 @@
-#!/bin/bash
-# deploy.sh � Run this on the server after each git push
+﻿#!/bin/bash
+# deploy.sh - Run this on the server after each git push
 # Usage: bash deploy.sh
 
-echo "?? Deploying..."
+echo "🚀 Deploying..."
 
 git pull origin main
 
-echo "?? Clearing caches..."
+echo "🔗 Linking storage..."
+php artisan storage:link
+
+echo "🧹 Clearing caches..."
 php artisan view:clear
 php artisan config:clear
 php artisan route:clear
 php artisan cache:clear
 php artisan optimize:clear
 
-echo "? Deployment complete!"
+echo "✅ Deployment complete!"

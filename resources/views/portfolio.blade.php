@@ -21,12 +21,27 @@
 
     <link rel="canonical" href="{{ url('/') }}">
 
+    @php
+        $heroImgSetting = $settings['hero_image'] ?? null;
+        $heroImg = asset('IMG_20241005_031308.jpg');
+        if (!empty($heroImgSetting)) {
+            $cleanHeroPath = ltrim(parse_url($heroImgSetting, PHP_URL_PATH) ?? $heroImgSetting, '/');
+            if (file_exists(public_path($cleanHeroPath))) {
+                $heroImg = asset($heroImgSetting);
+            } elseif (file_exists(public_path('profile-photo.jpg'))) {
+                $heroImg = asset('profile-photo.jpg');
+            }
+        } elseif (file_exists(public_path('profile-photo.jpg'))) {
+            $heroImg = asset('profile-photo.jpg');
+        }
+    @endphp
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech & IT Developer | Youth Leader · Kawasoti, Nepal">
     <meta property="og:description" content="Explore the portfolio of Rojish Bhurtel — Full Stack Tech Developer, Generative AI Specialist, and Youth Leader from Kawasoti, Nepal.">
-    <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta property="og:image" content="{{ $heroImg }}">
     <meta property="og:image:alt" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech and IT Developer from Kawasoti, Nepal">
     <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
     <meta property="og:locale" content="en_US">
@@ -36,13 +51,12 @@
     <meta name="twitter:url" content="{{ url('/') }}">
     <meta name="twitter:title" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} | Tech Developer & Youth Leader · Kawasoti">
     <meta name="twitter:description" content="Official portfolio of Rojish Bhurtel — Full Stack Tech Developer & Youth Leader from Kawasoti, Nepal.">
-    <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta name="twitter:image" content="{{ $heroImg }}">
     <meta name="twitter:image:alt" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech Developer from Kawasoti, Nepal">
-    <meta name="twitter:creator" content="@@rojishbhurtel">
+    <meta name="twitter:creator" content="@rojishbhurtel">
 
     <!-- Structured Data -->
     <?php
-    $heroImg = asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg');
     $siteUrl = url('/');
     $personName = $settings['hero_name'] ?? 'Rojish Bhurtel';
 
@@ -339,7 +353,8 @@
                             <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-1.5 animate-pulse relative z-10">
                                 <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center p-3 lg:p-4">
                                     <div class="w-full h-full rounded-full border-2 border-white/10 overflow-hidden shadow-inner">
-                                        <img src="{{ isset($settings['hero_image']) ? asset($settings['hero_image']) : asset('IMG_20241005_031308.jpg') }}" 
+                                        <img src="{{ $heroImg }}" 
+                                             onerror="this.onerror=null; this.src='{{ asset('IMG_20241005_031308.jpg') }}';"
                                              alt="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech and IT Developer from Kawasoti, Nepal" 
                                              width="384"
                                              height="384"

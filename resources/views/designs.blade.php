@@ -12,11 +12,26 @@
     <link rel="canonical" href="{{ route('designs.index') }}">
 
     <!-- Open Graph / Facebook -->
+    @php
+        $heroImgSetting = $settings['hero_image'] ?? null;
+        $heroImg = asset('IMG_20241005_031308.jpg');
+        if (!empty($heroImgSetting)) {
+            $cleanHeroPath = ltrim(parse_url($heroImgSetting, PHP_URL_PATH) ?? $heroImgSetting, '/');
+            if (file_exists(public_path($cleanHeroPath))) {
+                $heroImg = asset($heroImgSetting);
+            } elseif (file_exists(public_path('profile-photo.jpg'))) {
+                $heroImg = asset('profile-photo.jpg');
+            }
+        } elseif (file_exists(public_path('profile-photo.jpg'))) {
+            $heroImg = asset('profile-photo.jpg');
+        }
+    @endphp
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ route('designs.index') }}">
     <meta property="og:title" content="Graphic Design Showcase — {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
     <meta property="og:description" content="Explore the creative graphic design gallery of {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}, showcasing visual artwork, branding, and UI designs.">
-    <meta property="og:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
+    <meta property="og:image" content="{{ $heroImg }}">
     <meta property="og:site_name" content="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} Portfolio">
     <meta property="og:locale" content="en_US">
 
@@ -25,8 +40,8 @@
     <meta name="twitter:url" content="{{ route('designs.index') }}">
     <meta name="twitter:title" content="Graphic Design Showcase — {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }}">
     <meta name="twitter:description" content="Explore the graphic design gallery of {{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} from Kawasoti, Nepal.">
-    <meta name="twitter:image" content="{{ asset($settings['hero_image'] ?? 'IMG_20241005_031308.jpg') }}">
-    <meta name="twitter:creator" content="@@rojishbhurtel">
+    <meta name="twitter:image" content="{{ $heroImg }}">
+    <meta name="twitter:creator" content="@rojishbhurtel">
 
     <!-- Structured Data -->
     <?php

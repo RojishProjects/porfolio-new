@@ -63,7 +63,31 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         \Illuminate\Support\Facades\Artisan::call('cache:clear');
         return response()->json(['status' => 'All caches cleared successfully! ✅']);
     })->name('clear-cache');
+
+    Route::get('storage-link', function () {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return response()->json(['status' => 'Storage linked successfully! ✅']);
+    })->name('storage-link');
+
+    Route::get('reset-hero-image', function () {
+        \App\Models\Setting::updateOrCreate(
+            ['key' => 'hero_image'],
+            ['value' => 'profile-photo.jpg']
+        );
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        return response()->json(['status' => 'Hero image reset to profile-photo.jpg successfully! ✅']);
+    })->name('reset-hero-image');
 });
+
+// Fallback to serve storage assets directly if the storage symlink is missing on shared hosting
+Route::get('/storage/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*');
 
 
 Route::middleware('auth')->group(function () {

@@ -19,6 +19,7 @@ class PortfolioSeeder extends Seeder
         \App\Models\Setting::create(['key' => 'about_summary', 'value' => 'A multi-faceted professional passionate about technology, leadership, and creative marketing solutions.']);
         \App\Models\Setting::create(['key' => 'contact_email', 'value' => 'rojish.bhurtel@example.com']);
         \App\Models\Setting::create(['key' => 'contact_phone', 'value' => '+977 98XXXXXXXX']);
+        \App\Models\Setting::create(['key' => 'hero_image', 'value' => 'profile-photo.jpg']);
         \App\Models\Setting::create(['key' => 'contact_location', 'value' => 'Kathmandu, Nepal']);
 
         // About Roles
