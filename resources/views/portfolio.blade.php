@@ -23,16 +23,15 @@
 
     @php
         $heroImgSetting = $settings['hero_image'] ?? null;
-        $heroImg = asset('IMG_20241005_031308.jpg');
-        if (!empty($heroImgSetting)) {
+        if (empty($heroImgSetting) || str_contains($heroImgSetting, 'NMdGRozSpnYVYxYraUMe6OwmEJLP7yv91rsHB7ex') || $heroImgSetting === 'profile-photo.jpg') {
+            $heroImg = asset('profile-photo.jpg');
+        } else {
             $cleanHeroPath = ltrim(parse_url($heroImgSetting, PHP_URL_PATH) ?? $heroImgSetting, '/');
             if (file_exists(public_path($cleanHeroPath))) {
                 $heroImg = asset($heroImgSetting);
-            } elseif (file_exists(public_path('profile-photo.jpg'))) {
+            } else {
                 $heroImg = asset('profile-photo.jpg');
             }
-        } elseif (file_exists(public_path('profile-photo.jpg'))) {
-            $heroImg = asset('profile-photo.jpg');
         }
     @endphp
 
@@ -354,7 +353,7 @@
                                 <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center p-3 lg:p-4">
                                     <div class="w-full h-full rounded-full border-2 border-white/10 overflow-hidden shadow-inner">
                                         <img src="{{ $heroImg }}" 
-                                             onerror="this.onerror=null; this.src='{{ asset('IMG_20241005_031308.jpg') }}';"
+                                             onerror="this.onerror=null; this.src='{{ asset('profile-photo.jpg') }}';"
                                              alt="{{ $settings['hero_name'] ?? 'Rojish Bhurtel' }} - Tech and IT Developer from Kawasoti, Nepal" 
                                              width="384"
                                              height="384"

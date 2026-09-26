@@ -14,16 +14,15 @@
     <!-- Open Graph / Facebook -->
     @php
         $heroImgSetting = $settings['hero_image'] ?? null;
-        $heroImg = asset('IMG_20241005_031308.jpg');
-        if (!empty($heroImgSetting)) {
+        if (empty($heroImgSetting) || str_contains($heroImgSetting, 'NMdGRozSpnYVYxYraUMe6OwmEJLP7yv91rsHB7ex') || $heroImgSetting === 'profile-photo.jpg') {
+            $heroImg = asset('profile-photo.jpg');
+        } else {
             $cleanHeroPath = ltrim(parse_url($heroImgSetting, PHP_URL_PATH) ?? $heroImgSetting, '/');
             if (file_exists(public_path($cleanHeroPath))) {
                 $heroImg = asset($heroImgSetting);
-            } elseif (file_exists(public_path('profile-photo.jpg'))) {
+            } else {
                 $heroImg = asset('profile-photo.jpg');
             }
-        } elseif (file_exists(public_path('profile-photo.jpg'))) {
-            $heroImg = asset('profile-photo.jpg');
         }
     @endphp
 
